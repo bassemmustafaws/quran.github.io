@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+:root {
+  --bg-primary: #FBF8F1;
+  --bg-elevated: #F4EFE4;
+  --bg-card: #FFFFFF;
+  --bg-glass: rgba(251, 248, 241, 0.90);
+  --text-primary: #181A18;
+  --text-secondary: #525852;
+  --text-muted: #84887F;
+  --accent-emerald: #0D5C46;
+  --accent-emerald-light: rgba(13, 92, 70, 0.10);
+  --accent-gold: #C59B27;
+  --accent-gold-soft: rgba(197, 155, 39, 0.14);
+  --accent-ruby: #B8332A;
+  --border-gold: #E5DEC9;
+  --border-frame: rgba(197, 155, 39, 0.42);
+  --shadow-mushaf: 0 18px 50px -12px rgba(24, 26, 24, 0.08), 0 4px 16px -4px rgba(197, 155, 39, 0.08);
+}
+
+[data-theme="dark"] {
+  --bg-primary: #0E1512;
+  --bg-elevated: #15201B;
+  --bg-card: #1A2822;
+  --bg-glass: rgba(18, 28, 24, 0.92);
+  --text-primary: #EFECE6;
+  --text-secondary: #9BA8A1;
+  --text-muted: #697870;
+  --accent-emerald: #229977;
+  --accent-emerald-light: rgba(34, 153, 119, 0.15);
+  --accent-gold: #D9B146;
+  --accent-gold-soft: rgba(217, 177, 70, 0.15);
+  --accent-ruby: #E05347;
+  --border-gold: #24332C;
+  --border-frame: rgba(217, 177, 70, 0.35);
+  --shadow-mushaf: 0 22px 55px -12px rgba(0, 0, 0, 0.55), 0 4px 20px -4px rgba(217, 177, 70, 0.07);
+}
+
+[data-theme="sepia"] {
+  --bg-primary: #F5EEDB;
+  --bg-elevated: #EBE1C8;
+  --bg-card: #FAF5E8;
+  --bg-glass: rgba(245, 238, 219, 0.92);
+  --text-primary: #1F1912;
+  --text-secondary: #5C5040;
+  --text-muted: #877965;
+  --accent-emerald: #0B523E;
+  --accent-emerald-light: rgba(11, 82, 62, 0.11);
+  --accent-gold: #B6891B;
+  --accent-gold-soft: rgba(182, 137, 27, 0.16);
+  --accent-ruby: #B02E25;
+  --border-gold: #DCD0B4;
+  --border-frame: rgba(182, 137, 27, 0.45);
+  --shadow-mushaf: 0 18px 50px -12px rgba(45, 34, 18, 0.10);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  direction: rtl;
+  scroll-behavior: smooth;
+  font-family: 'Cairo', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+.font-quran {
+  font-family: 'Amiri Quran', 'Amiri', serif;
+  font-feature-settings: "liga" 1, "calt" 1, "kern" 1;
+}
+
+.font-amiri {
+  font-family: 'Amiri', serif;
+}
+
+.font-cairo {
+  font-family: 'Cairo', sans-serif;
+}
+
+.font-mono-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Ornate Mamluk Mushaf Page Frame */
+.mushaf-frame {
+  position: relative;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-frame);
+  box-shadow: var(--shadow-mushaf);
+  background-image: 
+    radial-gradient(circle at 50% 0%, var(--accent-gold-soft) 0%, transparent 55%),
+    radial-gradient(circle at 50% 100%, var(--accent-emerald-light) 0%, transparent 50%);
+}
+
+.mushaf-frame::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid var(--border-frame);
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0.65;
+}
+
+/* Subtle Islamic Geometric Pattern Overlay */
+.islamic-pattern-bg {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23C59B27' stroke-width='0.6' stroke-opacity='0.12'%3E%3Cpath d='M30 0L37.5 22.5L60 30L37.5 37.5L30 60L22.5 37.5L0 30L22.5 22.5Z'/%3E%3Ccircle cx='30' cy='30' r='8'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Ayah Hover & Active Transitions */
+.ayah-span {
+  transition: background-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+  border-radius: 10px;
+  padding: 2px 6px;
+  margin: 0 1px;
+  cursor: pointer;
+  display: inline;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.ayah-span:hover {
+  background-color: var(--accent-gold-soft);
+}
+
+.ayah-active {
+  background-color: var(--accent-gold-soft);
+  box-shadow: inset -3px 0 0 var(--accent-gold), 0 0 0 1px rgba(197, 155, 39, 0.28);
+}
+
+.ayah-bookmarked {
+  background-color: rgba(184, 51, 42, 0.10);
+  box-shadow: inset -3px 0 0 var(--accent-ruby), 0 0 0 1px rgba(184, 51, 42, 0.25);
+}
+
+@keyframes pulse-gold {
+  0%, 100% {
+    background-color: rgba(197, 155, 39, 0.32);
+    box-shadow: 0 0 0 4px rgba(197, 155, 39, 0.22);
+  }
+  50% {
+    background-color: rgba(197, 155, 39, 0.12);
+    box-shadow: 0 0 0 1px rgba(197, 155, 39, 0.1);
+  }
+}
+
+.ayah-jump-highlight {
+  animation: pulse-gold 1.3s ease-in-out 2;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-elevated);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(197, 155, 39, 0.4);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(197, 155, 39, 0.7);
+}
